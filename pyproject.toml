@@ -4,48 +4,62 @@ build-backend = "hatchling.build"
 
 [project]
 name = "flaresolverr"
+dynamic = ["version"]
 description = "Proxy server to bypass Cloudflare protection"
-version = "3.0.0"
 readme = "README.md"
-requires-python = ">=3.7"
+requires-python = ">=3.10"
 license = "MIT"
 keywords = []
 authors = [
-  { name = "Diego Heras (ngosang)", email = "ngosang@hotmail.es" },
+  { name = "Diego Heras (ngosang)", email = "ngosang@hotmail.es" }
+]
+maintainers = [
+  { name = "cwegener", email = "cwegener@gmail.com" },
+  { name = "Gaspard d'Hautefeuille", email = "gaspard@dhautefeuille.eu" }
 ]
 classifiers = [
   "Development Status :: 4 - Beta",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: OS Independent",
   "Programming Language :: Python",
-  "Programming Language :: Python :: 3.7",
-  "Programming Language :: Python :: 3.8",
-  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3",
   "Programming Language :: Python :: 3.10",
   "Programming Language :: Python :: 3.11",
   "Programming Language :: Python :: Implementation :: CPython",
-  "Programming Language :: Python :: Implementation :: PyPy",
+  "Programming Language :: Python :: Implementation :: PyPy"
 ]
 dependencies = [
   "bottle==0.12.23",
   "waitress==2.1.2",
-  "selenium==4.4.3",
+  "selenium==4.7.2",
   "func-timeout==4.3.5",
   "requests==2.28.1",
-  "websockets==10.3",
-  "xvfbwrapper==0.2.9",
+  "websockets==10.4",
+  "xvfbwrapper==0.2.9"
+]
+
+[project.optional-dependencies]
+test = [
+    "WebTest==3.0.0"
+]
+deploy = [
+    "hatch==1.5.0",
+    "pip-tools==6.12.1"
 ]
 
 [project.urls]
-Documentation = "https://github.com/flaresolverr/flaresolverr#readme"
-Issues = "https://github.com/flaresolverr/flaresolverr/issues"
-Source = "https://github.com/flaresolverr/flaresolverr"
+Documentation = "https://github.com/FlareSolverr/FlareSolverr#readme"
+Issues = "https://github.com/FlareSolverr/FlareSolverr/issues"
+Source = "https://github.com/FlareSolverr/FlareSolverr"
 
 [project.scripts]
 flaresolverr = "flaresolverr.flaresolverr:cli_run"
 
-[tool.hatch.build]
-include = [
-  "flaresolverr",
-]
+[tool.hatch.version]
+path = "flaresolverr/package.json"
+
+[tool.hatch.build.targets.sdist]
+    include = ["/flaresolverr"]
 
 [tool.hatch.envs.default]
 dependencies = [
@@ -58,7 +72,7 @@ cov = "pytest --cov-report=term-missing --cov-config=pyproject.toml --cov=flares
 no-cov = "cov --no-cov {args}"
 
 [[tool.hatch.envs.test.matrix]]
-python = ["37", "38", "39", "310", "311"]
+python = ["310", "311"]
 
 [tool.coverage.run]
 branch = true
