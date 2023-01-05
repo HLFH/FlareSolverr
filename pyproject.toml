@@ -4,7 +4,8 @@ build-backend = "hatchling.build"
 
 [project]
 name = "flaresolverr"
-dynamic = ["version"]
+#dynamic = ["version"]
+version = "3.0.0"
 description = "Proxy server to bypass Cloudflare protection"
 readme = "README.md"
 requires-python = ">=3.10"
@@ -55,8 +56,8 @@ Source = "https://github.com/FlareSolverr/FlareSolverr"
 [project.scripts]
 flaresolverr = "flaresolverr.flaresolverr:cli_run"
 
-[tool.hatch.version]
-path = "flaresolverr/package.json"
+#[tool.hatch.version]
+#path = "flaresolverr/package.json"
 
 [tool.hatch.build.targets.sdist]
     include = ["/flaresolverr"]
